@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{5d2ce37b-93ad-44d6-b842-978483bfb098}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{6a49a121-b533-46e5-b086-6f8c84f23ef1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Gamestate">
+      <UniqueIdentifier>{8539596f-fcbc-40d6-8881-a9ce3fa4b3f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Gamestate">
+      <UniqueIdentifier>{3fcb891d-1422-414d-90b2-4b8f5b0cf9f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Character">
+      <UniqueIdentifier>{794da4f2-43a7-47a4-9d5e-5f815e4d0e27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Character">
+      <UniqueIdentifier>{f419e5e4-a670-4be7-8c8c-e17178b54ef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Items">
+      <UniqueIdentifier>{6e65a1ed-0b43-4c7b-afd5-69a8967d44e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Items">
+      <UniqueIdentifier>{eb659fe8-faad-43b1-9a06-c4a438e7c753}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="X360Controller.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="baseObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionState.h">
+      <Filter>Header Files\Gamestate</Filter>
+    </ClInclude>
+    <ClInclude Include="Gamestate.h">
+      <Filter>Header Files\Gamestate</Filter>
+    </ClInclude>
+    <ClInclude Include="GamestateManager.h">
+      <Filter>Header Files\Gamestate</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Header Files\Gamestate</Filter>
+    </ClInclude>
+    <ClInclude Include="CreditsState.h">
+      <Filter>Header Files\Gamestate</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterBase.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="TestCharacter.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterManager.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledScrollingBkg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemBase.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="AcornItem.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Visual Studio 2010\Projects\BUGames2014_Squirrel (SAT NIGHT BUILD)\BUGames2014_Squirrel\BUGames2014_Squirrel\PausedState.h">
+      <Filter>Header Files\Gamestate</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\Visual Studio 2010\Projects\BUGames2014_Squirrel (SAT NIGHT BUILD)\BUGames2014_Squirrel\BUGames2014_Squirrel\WinState.h">
+      <Filter>Header Files\Gamestate</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalItem.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="X360Controller.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="baseObjects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PeteMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionState.cpp">
+      <Filter>Source Files\Gamestate</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditsState.cpp">
+      <Filter>Source Files\Gamestate</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Source Files\Gamestate</Filter>
+    </ClCompile>
+    <ClCompile Include="GamestateManager.cpp">
+      <Filter>Source Files\Gamestate</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterBase.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="TestCharacter.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterManager.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="TiledScrollingBkg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AcornItem.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Itembase.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="PausedState.cpp">
+      <Filter>Source Files\Gamestate</Filter>
+    </ClCompile>
+    <ClCompile Include="WinState.cpp">
+      <Filter>Source Files\Gamestate</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalItem.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
