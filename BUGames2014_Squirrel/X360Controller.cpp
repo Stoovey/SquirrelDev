@@ -1,6 +1,6 @@
 #include "X360Controller.h"
 
-const float X360Controller::AXIS_DEADZONE = 0.2f;
+const float X360Controller::AXIS_DEADZONE = 0.25f;
 
 X360Controller::X360Controller() {
 	sdl_ID = -1;

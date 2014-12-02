@@ -37,9 +37,7 @@ public:
 	bool WasKeyPressed(int key);
 
 private:
-	//analog stick values below this to be ignored
-	static const int DEAD_ZONE = 3000;
-
+	
 	//support four players using pads
 	static const int MAX_PADS = 4;
 	X360Controller* gamepads[MAX_PADS];
