@@ -1,0 +1,14 @@
+Collision handling in ActionState, the way Collisons:: function signatures
+
+Every 'actor' to inherit the same base position / size data class and use no other data for this
+
+CheckHasAnyoneWon to go to CM from ActionState
+
+The way player attacks are handled
+
+'Services', should simplify state ctors much, also cut SDL_Renderer member vars in states
+put a config class with win height etc in there
+
+The way RemoveAllStates can't delete them all them return control to a deleted caller
+
+The wasy menustate exits the program

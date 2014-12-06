@@ -45,6 +45,7 @@ int Menu::Update() {
 	if (selectedIndex < 0) selectedIndex = MENU_ITEM_COUNT - 1;
 	if (selectedIndex > MENU_ITEM_COUNT - 1) selectedIndex = 0;
 
+	//if we get here then nothing has been selected
 	return -1;
 }
 

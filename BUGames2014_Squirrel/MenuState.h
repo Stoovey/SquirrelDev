@@ -9,25 +9,30 @@
 #include "InputManager.h"
 #include "TiledScrollingBkg.h"
 
+/* MenuState is the one with the front end menu on.
+ * This is the state the game starts in */
 class MenuState : public GameState {
 
 public:
+	//constructor / destructor
 	MenuState(GamestateManager* stateManager, SDL_Renderer* renderer, InputManager* input, int winWidth, int winHeight);
 	~MenuState();
 
+	//update and draw this state
 	void Update(unsigned int deltaTime);
 	void Draw(SDL_Renderer* renderer);
 
 private:
+	//collection of pointers to the backgrounds this state uses
 	std::vector<TiledScrollingBkg*> backgrounds;
 
-	GamestateManager* stateManager;
-	SDL_Renderer* renderer;
-	InputManager* input;
-	
-	Sprite* background;
-	Menu* menu;
+	GamestateManager* stateManager;	//used to cause state changes from within this state (i.e go to PausedState)
+	SDL_Renderer* renderer;			//used in sprite creation
+	InputManager* input;			//allow MenuState to access player input
+	Sprite* background;				//main background image (see constructor for details)
+	Menu* menu;						//pointer to the menu itself
 
+	//store SDL game window width and height in pixels
 	int winWidth;
 	int winHeight;
 

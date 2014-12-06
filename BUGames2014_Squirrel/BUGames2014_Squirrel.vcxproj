@@ -87,8 +87,6 @@
     <ClInclude Include="Gamestate.h" />
     <ClInclude Include="GamestateManager.h" />
     <ClInclude Include="GoalItem.h" />
-    <ClInclude Include="H:\Visual Studio 2010\Projects\BUGames2014_Squirrel (SAT NIGHT BUILD)\BUGames2014_Squirrel\BUGames2014_Squirrel\PausedState.h" />
-    <ClInclude Include="H:\Visual Studio 2010\Projects\BUGames2014_Squirrel (SAT NIGHT BUILD)\BUGames2014_Squirrel\BUGames2014_Squirrel\WinState.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="ItemBase.h" />
     <ClInclude Include="ItemManager.h" />
@@ -96,10 +94,12 @@
     <ClInclude Include="level.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="MenuState.h" />
+    <ClInclude Include="PausedState.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestCharacter.h" />
     <ClInclude Include="TiledScrollingBkg.h" />
     <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="WinState.h" />
     <ClInclude Include="X360Controller.h" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +127,9 @@
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="WinState.cpp" />
     <ClCompile Include="X360Controller.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Needs Fixing.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,6 +2,7 @@
 
 WinState::WinState(CharacterManager* players, GamestateManager* stateManager, SDL_Renderer* renderer, InputManager* input, int winWidth, int winHeight)
 {
+	//store incoming vars in member vars
 	this->players = players;
 	this->stateManager = stateManager;
 	this->renderer = renderer;
@@ -9,22 +10,24 @@ WinState::WinState(CharacterManager* players, GamestateManager* stateManager, SD
 	this->winWidth = winWidth;
 	this->winHeight = winHeight;
 	
+	//create background this state uses
 	background = new Sprite("images/credits/credits.png", renderer);
 
 }
 
+//destructor
 WinState::~WinState() {
-
+	//delete everything we have 'new-ed' and stored in this object
+	delete background;
 }
 
+//update win state
 void WinState::Update(unsigned int deltaTime) {
-	//system("cls");
-	//std::cout << "Credits Update" << std::endl;
-	//if (input->WasKeyPressed(SDLK_ESCAPE))
-	//	stateManager->RemoveTopState();
+	//does nothing, this means there is no way off the win screen
 }
 
+//draw win state
 void WinState::Draw(SDL_Renderer* renderer) {
-	//std::cout << "Credits Draw" << std::endl;
+	//draw the background we use for winstate
 	background->Draw(0, 0, winWidth, winHeight, *renderer);
 }
