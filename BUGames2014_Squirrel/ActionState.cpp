@@ -39,7 +39,6 @@ ActionState::ActionState(GamestateManager* stateManager, SDL_Renderer* renderer,
 //destructor
 ActionState::~ActionState() {
 	//delete everything we have 'new-ed' and stored in this class
-	delete testCharacter;
 	delete theLevel;
 	delete collision;
 	delete characterManager;
@@ -74,27 +73,34 @@ void ActionState::Update(unsigned int deltaTime) {
 		characterManager->AddPlayer(startPadIndex);
 	}
 
-	//see if anyone has met the victory conditions
-	CheckHasAnyoneWon();
-
 	//if anyone has pressed escape or X360 Back, get StateManager to throw PausedState onto the states list
 	if(input->WasKeyPressed(SDLK_ESCAPE) || input->WasPadButtonPressedByAnyPad(SDL_CONTROLLER_BUTTON_BACK) != -1)
 	{
 		stateManager->AddState(new PausedState(stateManager, renderer, input, winWidth, winHeight));
 	}
+
+	/* we always want to return after using GameStateManager::ChangeState as it
+	 * removes THIS state and deletes it. Continuing to run code in here could
+	 * cause a crash */
+	if (CheckHasAnyoneWon()) {
+		stateManager->ChangeState(new WinState(characterManager,stateManager, renderer, input, winWidth, winHeight));
+		return;
+	}
 }
 
 //see if anyone has met the victory conditions
-void ActionState::CheckHasAnyoneWon() {
+bool ActionState::CheckHasAnyoneWon() {
 
 	//go over each player in the player list
-	for (int i = 0; i < characterManager->GetPlayers().size(); i++) {
-		//if a player has a score of 10, get StateManager to switch to WonState
-		if (characterManager->GetPlayers().at(i)->GetScore() >= 10) {
-			stateManager->RemoveAllStates();
-			stateManager->AddState(new WinState(characterManager,stateManager, renderer, input, winWidth, winHeight));
+	for (unsigned int i = 0; i < characterManager->GetPlayers().size(); i++) {
+		//if a player has a score of 10, return true
+		if (characterManager->GetPlayers().at(i)->GetScore() >= 3) {
+			return true;
 		}
 	}
+
+	//if we get here then no player has won
+	return false;
 }
 
 //check collisions between things - NEEDS TIDYING / REFACTORING

@@ -6,7 +6,8 @@ CharacterBase::CharacterBase(InputManager* input) {
 	this->isActive = false;
 	this->score = 0;
 }
-#//destructor
+
+//destructor
 CharacterBase::~CharacterBase() {
 
 }

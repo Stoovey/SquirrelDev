@@ -2,8 +2,13 @@
 
 //delete any states
 GamestateManager::~GamestateManager() {
-	//this deletes and removes all states
-	RemoveAllStates();
+	
+	//create an iterator, make it visit every element in the gamestates vector
+	std::vector<GameState*>::iterator iter;
+	for (iter = gameStates.begin(); iter != gameStates.end(); iter++) {
+		//delete each one
+		delete (*iter);
+	}
 }
 
 //add a new state
@@ -14,11 +19,20 @@ void GamestateManager::AddState(GameState* state) {
 }
 
 //clear states vector
-void GamestateManager::RemoveAllStates() {
+void GamestateManager::ChangeState(GameState* state) {
+	
+	//create an iterator, make it visit every element in the gamestates vector
+	std::vector<GameState*>::iterator iter;
+	for (iter = gameStates.begin(); iter != gameStates.end(); iter++) {
+		//delete each one
+		delete (*iter);
+	}
 
-	/* empty the vector, this does not delete the 
-	 * objects being pointed to in it though */
+	// empty the vector
 	gameStates.clear();
+
+	//add just the state we were passed
+	AddState(state);
 }
 
 //remove 'top' state

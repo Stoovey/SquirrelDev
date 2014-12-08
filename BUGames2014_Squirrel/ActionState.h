@@ -29,9 +29,9 @@ public:
 private:
 
 	//see if any player has won the game
-	void CheckHasAnyoneWon();
+	bool CheckHasAnyoneWon();
 
-	CharacterBase* testCharacter;	//can represent any type of character
+	//CharacterBase* testCharacter;	//can represent any type of character
 	InputManager* input;			//allow ActionState to access player input
 	Collision* collision;			//collision checker
 	level* theLevel;				//the map itself

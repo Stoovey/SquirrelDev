@@ -22,7 +22,7 @@ class CharacterBase : public baseObjects {
 public:
 	//constructor / destructor
 	CharacterBase(InputManager* input);
-	~CharacterBase();
+	virtual ~CharacterBase();
 
 	/* update and draw functions, 'virtual' means
 	 * that any classes which inherit from this one

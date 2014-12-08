@@ -12,3 +12,7 @@ put a config class with win height etc in there
 The way RemoveAllStates can't delete them all them return control to a deleted caller
 
 The wasy menustate exits the program
+
+The way the goal is spawned
+
+Acorn spawn used hardcoded screen size
