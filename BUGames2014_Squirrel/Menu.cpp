@@ -85,16 +85,16 @@ void Menu::Draw(SDL_Renderer* renderer) {
 
 void Menu::LoadImages(SDL_Renderer* renderer) {
 	//load "unselected" images
-	unselectedImages[0] = new Sprite("images/menu/menu1.png", renderer);
-	//unselectedImages[1] = new Sprite("images/menu/menu2.png", renderer);
-	//unselectedImages[2] = new Sprite("images/menu/menu3.png", renderer);
-	unselectedImages[1] = new Sprite("images/menu/menu4.png", renderer);
-	unselectedImages[2] = new Sprite("images/menu/menu5.png", renderer);
+	unselectedImages[0] = new Sprite("Content/MainMenu/menu1.png", renderer);
+	//unselectedImages[1] = new Sprite("Content/MainMenu/menu2.png", renderer);
+	//unselectedImages[2] = new Sprite("Content/MainMenu/menu3.png", renderer);
+	unselectedImages[1] = new Sprite("Content/MainMenu/menu4.png", renderer);
+	unselectedImages[2] = new Sprite("Content/MainMenu/menu5.png", renderer);
 
 	//load "selected" images
-	selectedImages[0] = new Sprite("images/menu/menu1_s.png", renderer);
-	//selectedImages[1] = new Sprite("images/menu/menu2_s.png", renderer);
-	//selectedImages[2] = new Sprite("images/menu/menu3_s.png", renderer);
-	selectedImages[1] = new Sprite("images/menu/menu4_s.png", renderer);
-	selectedImages[2] = new Sprite("images/menu/menu5_s.png", renderer);
+	selectedImages[0] = new Sprite("Content/MainMenu/menu1_s.png", renderer);
+	//selectedImages[1] = new Sprite("Content/MainMenu/menu2_s.png", renderer);
+	//selectedImages[2] = new Sprite("Content/MainMenu/menu3_s.png", renderer);
+	selectedImages[1] = new Sprite("Content/MainMenu/menu4_s.png", renderer);
+	selectedImages[2] = new Sprite("Content/MainMenu/menu5_s.png", renderer);
 }

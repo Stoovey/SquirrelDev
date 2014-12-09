@@ -1,7 +1,7 @@
 #include "AcornItem.h"
 
 AcornItem::AcornItem(level* theLevel, CharacterManager* playerManager, SDL_Renderer* renderer, InputManager* input) : ItemBase(theLevel, playerManager, input) {
-	acornSprite = new Sprite("Assets/Items/Acorn.png", 0, 0, 64, 64, *renderer);
+	acornSprite = new Sprite("Content/Items/Acorn.png", 0, 0, 64, 64, *renderer);
 	
 	vel.Y = .25f;
 	vel.X = 0.f;

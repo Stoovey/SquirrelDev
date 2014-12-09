@@ -29,11 +29,11 @@ ActionState::ActionState(GamestateManager* stateManager, SDL_Renderer* renderer,
 
 	/* add five background images to the 'backgrounds' memeber (which is a std::vector<TiledScrollingBkg*>)
 	 * notice how the last 3 have 0.f passed as their scroll speed, meaning they will stay fixed (tree layers) */
-	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Assets/Background_scaled.png", renderer),  .01f, winWidth, winHeight));
-	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Assets/Clouds_scaled.png", renderer),      .03f, winWidth, winHeight));
-	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Assets/Foliage_scaled.png", renderer),      0.f, winWidth, winHeight));
-	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Assets/Middleground_scaled.png", renderer), 0.f, winWidth, winHeight));
-	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Assets/Foreground_scaled.png", renderer),   0.f, winWidth, winHeight));
+	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Content/Levels/Background_scaled.png", renderer),  .01f, winWidth, winHeight));
+	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Content/Levels/Clouds_scaled.png", renderer),      .03f, winWidth, winHeight));
+	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Content/Levels/Foliage_scaled.png", renderer),      0.f, winWidth, winHeight));
+	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Content/Levels/Middleground_scaled.png", renderer), 0.f, winWidth, winHeight));
+	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Content/Levels/Foreground_scaled.png", renderer),   0.f, winWidth, winHeight));
 }
 
 //destructor

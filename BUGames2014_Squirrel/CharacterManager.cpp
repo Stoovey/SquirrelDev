@@ -5,30 +5,30 @@ CharacterManager::CharacterManager(SDL_Renderer* render, InputManager* input) {
 	this->input = input;
 	
 	//add four players to the players list, use a different sprite for each
-	players.push_back(new TestCharacter("Assets/character_sprite.png", *render, input));
-	players.push_back(new TestCharacter("Assets/character_sprite2.png", *render, input));
-	players.push_back(new TestCharacter("Assets/character_sprite4.png", *render, input));
-	players.push_back(new TestCharacter("Assets/character_sprite5.png", *render, input));
+	players.push_back(new TestCharacter("Content/Characters/Squirrel/character_sprite.png", *render, input));
+	players.push_back(new TestCharacter("Content/Characters/Squirrel/character_sprite2.png", *render, input));
+	players.push_back(new TestCharacter("Content/Characters/Squirrel/character_sprite3.png", *render, input));
+	players.push_back(new TestCharacter("Content/Characters/Squirrel/character_sprite4.png", *render, input));
 
 	//the four player score UI parts, put a "Press Start" in them all to begin with
 	for (int i = 0; i < 4; i++) {
-		scoreUI.push_back(new Sprite("Assets/UI/press_start.png", render));
+		scoreUI.push_back(new Sprite("Content/UserInterface/press_start.png", render));
 	}
 
 	/*-----------------------------------
 	Setting up Vector of numbers
 	----------------------------------*/
-	numbersUI.push_back(new Sprite("Assets/UI/score0.png", render));
-	numbersUI.push_back(new Sprite("Assets/UI/score1.png", render));
-	numbersUI.push_back(new Sprite("Assets/UI/score2.png", render));
-	numbersUI.push_back(new Sprite("Assets/UI/score3.png", render));
-	numbersUI.push_back(new Sprite("Assets/UI/score4.png", render));
-	numbersUI.push_back(new Sprite("Assets/UI/score5.png", render));
-	numbersUI.push_back(new Sprite("Assets/UI/score6.png", render));
-	numbersUI.push_back(new Sprite("Assets/UI/score7.png", render));
-	numbersUI.push_back(new Sprite("Assets/UI/score8.png", render));
-	numbersUI.push_back(new Sprite("Assets/UI/score9.png", render));
-	numbersUI.push_back(new Sprite("Assets/win.jpeg", render));
+	numbersUI.push_back(new Sprite("Content/UserInterface/score0.png", render));
+	numbersUI.push_back(new Sprite("Content/UserInterface/score0.png", render));
+	numbersUI.push_back(new Sprite("Content/UserInterface/score2.png", render));
+	numbersUI.push_back(new Sprite("Content/UserInterface/score3.png", render));
+	numbersUI.push_back(new Sprite("Content/UserInterface/score4.png", render));
+	numbersUI.push_back(new Sprite("Content/UserInterface/score5.png", render));
+	numbersUI.push_back(new Sprite("Content/UserInterface/score6.png", render));
+	numbersUI.push_back(new Sprite("Content/UserInterface/score7.png", render));
+	numbersUI.push_back(new Sprite("Content/UserInterface/score8.png", render));
+	numbersUI.push_back(new Sprite("Content/UserInterface/score9.png", render));
+	//numbersUI.push_back(new Sprite("Assets/win.jpeg", render)); What is this?
 }
 
 //destructor

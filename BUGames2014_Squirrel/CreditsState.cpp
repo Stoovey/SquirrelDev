@@ -11,7 +11,7 @@ CreditsState::CreditsState(GamestateManager* stateManager, SDL_Renderer* rendere
 	this->winHeight = winHeight;
 	
 	//create background sprite
-	background = new Sprite("images/credits/credits.png", renderer);
+	background = new Sprite("Content/MainMenu/credits.png", renderer);
 
 }
 

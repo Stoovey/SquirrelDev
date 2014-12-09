@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	int winPosY = 200;
 	int winWidth = 1280;
 	int winHeight = 720;
-	SDL_Window *window = SDL_CreateWindow("My Window!!!", winPosX, winPosY,	winWidth, winHeight,
+	SDL_Window *window = SDL_CreateWindow("Alpha build -> Heterdox Games", winPosX, winPosY,	winWidth, winHeight,
 		SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 
 	SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, 0);

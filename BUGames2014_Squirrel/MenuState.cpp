@@ -12,14 +12,14 @@ MenuState::MenuState(GamestateManager* stateManager, SDL_Renderer* renderer, Inp
 	this->winHeight = winHeight;
 
 	//add some scrolling background images
-	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Assets/Background_scaled.png", renderer), .01f, winWidth, winHeight));
-	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Assets/Clouds_scaled.png", renderer), .03f, winWidth, winHeight));
+	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Content/Levels/Background_scaled.png", renderer), .01f, winWidth, winHeight));
+	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Content/Levels/Clouds_scaled.png", renderer), .03f, winWidth, winHeight));
 	
 	/* create the sprite which is the main background image, the reason this
 	 * is its own sprite is that the Sprite class provides an easy way of 
 	 * getting an image to fill the screen, whereas the TiledScrollingBkg
 	 * class assumes this is never necessary */
-	background = new Sprite("Assets/mainmenu_transparent.png", renderer);
+	background = new Sprite("Content/Levels/mainmenu_transparent.png", renderer);
 	
 	//create the main menu itself
 	menu = new Menu(renderer, input);

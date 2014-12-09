@@ -13,7 +13,7 @@ level::level(){
 }
 
 void level::init(SDL_Renderer* render){
-	grass = new Sprite("Resources/block.png",render);
+	grass = new Sprite("Content/Levels/block.png",render);
 	PopulateBlocksVector(render);
 }
 
@@ -33,15 +33,15 @@ level::~level(){
 
 void level::PopulateBlocksVector(SDL_Renderer* render) {
 	//HARDCODE THE LEVEL DESIGN
-	std::string grassBlock = "Resources/block.png";
+	std::string grassBlock = "Content/Levels/block.png";
 	
-	std::string Block1 = "Assets/block_1.png";
-	std::string Block2 = "Assets/block_2.png";
-	std::string Block3 = "Assets/block_3.png";
-	std::string Block4 = "Assets/block_4.png";
-	std::string Block5 = "Assets/block_5.png";
-	std::string BlockL = "Assets/block_end_left.png";
-	std::string BlockR = "Assets/block_end_right.png";
+	std::string Block1 = "Content/Levels/block_1.png";
+	std::string Block2 = "Content/Levels/block_2.png";
+	std::string Block3 = "Content/Levels/block_3.png";
+	std::string Block4 = "Content/Levels/block_4.png";
+	std::string Block5 = "Content/Levels/block_5.png";
+	std::string BlockL = "Content/Levels/block_end_left.png";
+	std::string BlockR = "Content/Levels/block_end_right.png";
 
 	//FLOOR
 	platformBlocks->push_back(new Sprite(BlockL, 64*6+32,720-32,32,32,*render));

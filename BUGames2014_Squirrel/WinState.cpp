@@ -11,7 +11,7 @@ WinState::WinState(CharacterManager* players, GamestateManager* stateManager, SD
 	this->winHeight = winHeight;
 	
 	//create background this state uses
-	background = new Sprite("images/credits/credits.png", renderer);
+	background = new Sprite("Content/MainMenu/credits.png", renderer);
 
 }
 

@@ -11,7 +11,7 @@ PausedState::PausedState(GamestateManager* stateManager, SDL_Renderer* renderer,
 	this->winHeight = winHeight;
 	
 	//create background sprite
-	background = new Sprite("images/Paused/background.png", renderer);
+	background = new Sprite("Content/UserInterface/background.png", renderer);
 }
 
 //destructor
