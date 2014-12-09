@@ -45,6 +45,8 @@ bool Keyboard::IsKeyHeld(int key) {
 		else
 			return false;
 	}
+
+	return false;
 }
 
 bool Keyboard::WasKeyReleased(int key) {
@@ -57,6 +59,8 @@ bool Keyboard::WasKeyReleased(int key) {
 		else
 			return false;
 	}
+
+	return false;
 }
 
 bool Keyboard::WasKeyPressed(int key) {
@@ -69,6 +73,8 @@ bool Keyboard::WasKeyPressed(int key) {
 		else
 			return false;
 	}
+
+	return false;
 }
 
 int Keyboard::GetKeyIndexFromSDLKeyCode(int code) {

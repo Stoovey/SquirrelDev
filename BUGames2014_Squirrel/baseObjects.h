@@ -13,13 +13,13 @@ class baseObjects{
 protected:
 	SDL_Rect	pos;
 public:
-	void setX(int x);
-	void setY(int y);
+	void setX(float x);
+	void setY(float y);
 	void setW(int w);
 	void setH(int h);
 
-	int getX();
-	int getY();
+	float getX();
+	float getY();
 	int getW();
 	int getH();
 

@@ -8,8 +8,10 @@
 #include "Collision.h"
 #include "InputManager.h"
 
-enum ItemState {
-	Standard, Fall, Collected, Die, Thrown
+namespace ItemState {
+	enum State {
+		Standard, Fall, Collected, Die, Thrown
+	};
 };
 
 class ItemBase {
@@ -28,10 +30,10 @@ public:
 	virtual int GetWidth() = 0;
 	virtual int GetHeight() = 0;
 
-	ItemState GetItemState() { return itemState; }
+	ItemState::State GetItemState() { return itemState; }
 
 protected:
-	ItemState itemState;
+	ItemState::State itemState;
 	level* theLevel;
 	CharacterManager* playerManager;
 	InputManager* input;

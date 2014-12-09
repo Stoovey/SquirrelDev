@@ -67,7 +67,7 @@ void ItemManager::SpawnGoal() {
 
 	GoalItem* goalItem = new GoalItem(theLevel, playerManager, renderer, input);
 	Vector2D* goalLocation = theLevel->GetAGoalLocation();
-	goalItem->Spawn(goalLocation->X, goalLocation->Y);
+	goalItem->Spawn((int)goalLocation->X, (int)goalLocation->Y);
 
 	//first list is for update / drawing, second for easy finding
 	spawnedItems.push_back(goalItem);

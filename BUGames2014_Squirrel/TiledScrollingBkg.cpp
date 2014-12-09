@@ -41,7 +41,7 @@ void TiledScrollingBkg::Draw(SDL_Renderer* renderer) {
 
 	//for every row of tiles...
 	for (int i = 0; i < numImagesY; i++) {
-		x = imageXOffset;
+		x = (int)imageXOffset;
 		//for every tile in the row...
 		for (int j = 0; j < numImagesX; j++) {
 			

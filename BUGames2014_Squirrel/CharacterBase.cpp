@@ -13,7 +13,7 @@ CharacterBase::~CharacterBase() {
 }
 
 //call to change this players state
-void CharacterBase::SetState(PlayerState state) {
+void CharacterBase::SetState(PlayerState::State state) {
 	//set our state to whatever the incoming state is
 	playerState = state;
 
@@ -27,7 +27,7 @@ void CharacterBase::SetState(PlayerState state) {
 }
 
 //return this player state to the caller
-PlayerState CharacterBase::GetState() {
+PlayerState::State CharacterBase::GetState() {
 	return playerState;
 }
 

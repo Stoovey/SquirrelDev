@@ -9,12 +9,14 @@
 /* the player can be in any of these states
  * we can check which it is and do things
  * accordingly */
-enum PlayerState {
+namespace PlayerState {
+enum State {
 	Spawning,
 	Normal,
 	Jumping,
 	Falling,
 	Dead
+};
 };
 
 class CharacterBase : public baseObjects {
@@ -39,18 +41,18 @@ public:
 	void Activate(int padID);
 
 	//allow caller to see this players state, padID, score and wether it is active
-	PlayerState GetState();
+	PlayerState::State GetState();
 	int GetPadID() { return padID; }
 	int GetScore() { return score; }
 	bool GetIsActive() { return isActive; }
 	
 	//allow caller to set this players state and adjust its score
-	void SetState(PlayerState state);
+	void SetState(PlayerState::State state);
 	void AdjustScore(int value);
 
 protected:
 	//hold this players current state
-	PlayerState playerState;
+	PlayerState::State playerState;
 
 	//allow player to use input
 	InputManager* input;

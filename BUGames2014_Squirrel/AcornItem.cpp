@@ -143,12 +143,12 @@ void AcornItem::UpdateThrown(unsigned int deltaTime) {
 }
 
 void AcornItem::Draw(SDL_Renderer* renderer) {
-	acornSprite->Draw(pos.X, pos.Y, acornSprite->getW(), acornSprite->getH(), *renderer);
+	acornSprite->Draw((int)pos.X, (int)pos.Y, acornSprite->getW(), acornSprite->getH(), *renderer);
 }
 
 void AcornItem::Spawn(int x, int y) {
-	pos.X = x;
-	pos.Y = y;
+	pos.X = (float)x;
+	pos.Y = (float)y;
 	playerHoldingThis = NULL;
 	itemState = ItemState::Standard;
 }
@@ -163,14 +163,14 @@ void AcornItem::CheckInBounds() {
 }
 
 bool AcornItem::DoGoalCheck(std::vector<ItemBase*>& goalItems) {
-	for (int i = 0; i < goalItems.size(); i++) {
+	for (unsigned int i = 0; i < goalItems.size(); i++) {
 		if (collision->boxCollision(
-			pos.X,
-			pos.Y, 
+			(int)pos.X,
+			(int)pos.Y, 
 			acornSprite->GetWidth(), 
 			acornSprite->GetHeight(),
-			goalItems.at(i)->GetPos().X, 
-			goalItems.at(i)->GetPos().Y, 
+			(int)goalItems.at(i)->GetPos().X, 
+			(int)goalItems.at(i)->GetPos().Y, 
 			goalItems.at(i)->GetWidth(), 
 			goalItems.at(i)->GetHeight())) {
 
@@ -194,14 +194,14 @@ bool AcornItem::DoGoalCheck(std::vector<ItemBase*>& goalItems) {
 
 Sprite* AcornItem::CheckCollideScenery() {
 
-	for (int i = 0; i < theLevel->GetPlatformBlocks()->size(); i++) {
+	for (unsigned int i = 0; i < theLevel->GetPlatformBlocks()->size(); i++) {
 		if (collision->boxCollision(
-			pos.X,
-			pos.Y, 
+			(int)pos.X,
+			(int)pos.Y, 
 			acornSprite->GetWidth(), 
 			acornSprite->GetHeight(),
-			theLevel->GetPlatformBlocks()->at(i)->getX(), 
-			theLevel->GetPlatformBlocks()->at(i)->getY(), 
+			(int)theLevel->GetPlatformBlocks()->at(i)->getX(), 
+			(int)theLevel->GetPlatformBlocks()->at(i)->getY(), 
 			theLevel->GetPlatformBlocks()->at(i)->getW(), 
 			theLevel->GetPlatformBlocks()->at(i)->getH())) {
 
@@ -214,11 +214,11 @@ Sprite* AcornItem::CheckCollideScenery() {
 
 CharacterBase* AcornItem::CheckCollisionPlayer() {
 	
-	for (int i = 0; i < playerManager->GetPlayers().size(); i++) {
+	for (unsigned int i = 0; i < playerManager->GetPlayers().size(); i++) {
 		if (collision->boxCollision(
-			pos.X, pos.Y, acornSprite->GetWidth(), acornSprite->GetHeight(),
-			playerManager->GetPlayers().at(i)->getX(),
-			playerManager->GetPlayers().at(i)->getY(),
+			(int)pos.X, (int)pos.Y, acornSprite->GetWidth(), acornSprite->GetHeight(),
+			(int)playerManager->GetPlayers().at(i)->getX(),
+			(int)playerManager->GetPlayers().at(i)->getY(),
 			playerManager->GetPlayers().at(i)->getW(),
 			playerManager->GetPlayers().at(i)->getH())) {
 

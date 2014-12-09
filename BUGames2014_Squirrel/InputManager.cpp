@@ -65,33 +65,43 @@ int InputManager::WasPadButtonPressedByAnyPad(SDL_GameControllerButton button) {
 bool InputManager::WasPadButtonPressed(int playerIndex, SDL_GameControllerButton button) {
 	if (playerIndex >= 0 && playerIndex < MAX_PADS)
 		return gamepads[playerIndex]->WasButtonPressed(button);
+
+	return false;
 }
 
 bool InputManager::WasPadButtonReleased(int playerIndex, SDL_GameControllerButton button) {
 	if (playerIndex >= 0 && playerIndex < MAX_PADS)
 		return gamepads[playerIndex]->WasButtonReleased(button);
+
+	return false;
 }
 
 bool InputManager::IsPadButtonHeld(int playerIndex, SDL_GameControllerButton button) {
 	if (playerIndex >= 0 && playerIndex < MAX_PADS)
 		return gamepads[playerIndex]->IsButtonHeld(button);
+
+	return false;
 }
 
 float InputManager::GetPadAxisValue(int playerIndex, SDL_GameControllerAxis axis) {
 	if (playerIndex >= 0 && playerIndex < MAX_PADS)
 		return gamepads[playerIndex]->GetAxisValue(axis);
+
+	return false;
 }
 
 Vector2D InputManager::GetPadStickAsVec2D(int playerIndex, SDL_GameControllerButton stick) {
 	if (playerIndex >= 0 && playerIndex < MAX_PADS)
 		return gamepads[playerIndex]->GetStickVector(stick);
+
+	return Vector2D();
 }
 
 void InputManager::addGamepad(SDL_Event& padAddedEvent) {
 	//the ID by which SDL refers to the new controller
 	int padID = padAddedEvent.cdevice.which;
 	
-	//find an incactive entry in the gamepads array, store new pad there
+	//find an inactive entry in the gamepads array, store new pad there
 	for (int i = 0; i < MAX_PADS; i++) {
 		if (!gamepads[i]->GetIsActive()) {
 			if (gamepads[i]->Activate(padID)) {

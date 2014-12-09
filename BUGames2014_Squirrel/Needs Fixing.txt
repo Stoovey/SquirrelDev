@@ -16,3 +16,5 @@ The wasy menustate exits the program
 The way the goal is spawned
 
 Acorn spawn used hardcoded screen size
+
+InputManager, the "if not valid pad Id..." should throw? not return false / Vec2()?
