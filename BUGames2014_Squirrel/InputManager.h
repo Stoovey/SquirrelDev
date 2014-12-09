@@ -10,14 +10,20 @@
 class InputManager {
 
 public:
+	//constructor / destructor
 	InputManager();
 	~InputManager();
 
+	/* should be called at the start of each frame.
+	 * this sorts out storing what was pressed last
+	 * frame so as to detect buttons / keys being
+	 * held, released or just now pressed */
 	void Update();
 
+	//is player X's pad working
 	bool IsPlayerPadActive(int playerID);
 
-	//InputManager handles input events vis these functions
+	//InputManager handles all SDL input events via these functions
 	void HandleGamepadEvent(SDL_Event& gamepadEvent);
 	void HandleKeyboardEvent(SDL_Event& keyboardEvent);
 
@@ -28,7 +34,7 @@ public:
 	float GetPadAxisValue(int playerIndex, SDL_GameControllerAxis axis);
 	Vector2D GetPadStickAsVec2D(int playerIndex, SDL_GameControllerButton stick);
 
-	//return padID of first pad found to have pressed, or -1 if none have
+	//return padID of first pad found to have pressed whatever button, or -1 if none have
 	int WasPadButtonPressedByAnyPad(SDL_GameControllerButton button);
 	
 	//expose keyboard via these functions

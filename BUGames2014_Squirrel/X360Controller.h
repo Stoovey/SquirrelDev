@@ -7,18 +7,21 @@
 class X360Controller {
 
 public:
+	//constructor / destructor
 	X360Controller();
 	~X360Controller();
 
+	//called when pads are inserted / removed
 	bool Activate(int sdl_ID);
 	void Deactivate();
 
 	void Update();
 
+	//handle SDL events
 	void HandleButtonEvent(SDL_Event& buttonEvent);
 	void HandleAxisEvent(SDL_Event& axisEvent);
 
-	//button / axix state functions
+	//button / axis state functions
 	bool WasButtonPressed(SDL_GameControllerButton button);
 	bool WasButtonReleased(SDL_GameControllerButton button);
 	bool IsButtonHeld(SDL_GameControllerButton button);

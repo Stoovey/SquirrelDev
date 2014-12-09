@@ -1,17 +1,23 @@
 #include "Keyboard.h"
 
+//constructor
 Keyboard::Keyboard() {
 	BuildSDLKeyMap();
+	
+	/* see how many keys we are trackign the state of,
+	 * build arrays with that many bool elements in */
 	numKeyCodes = SDLKeyMap.size();
 	currKeysState = new bool[numKeyCodes];
 	prevKeysState = new bool[numKeyCodes];
 
+	//set all array elements to false to start with
 	for (int i = 0; i < numKeyCodes; i++) {
 		currKeysState[i] = false;
 		prevKeysState[i] = false;
 	}
 }
 
+//destructor
 Keyboard::~Keyboard() {
 	delete[] currKeysState;
 	delete[] prevKeysState;
@@ -23,11 +29,16 @@ void Keyboard::Update() {
 		prevKeysState[i] = currKeysState[i];
 }
 
+//handle all SDL keyboard events
 void Keyboard::HandleKeyboardEvent(SDL_Event& keyboardEvent) {
-	std::unordered_map<int, int>::const_iterator iter = SDLKeyMap.find(keyboardEvent.key.keysym.sym);
-	if (iter != SDLKeyMap.end()) {
-		int keyArrayIndex = iter->second;
 
+	//find out which of our key array elements the incoming key maps to
+	int keyArrayIndex = GetKeyIndexFromSDLKeyCode(keyboardEvent.key.keysym.sym);
+	
+	//if the key is one we are interested in...
+	if (keyArrayIndex != -1) {
+
+		//..store its current state
 		if (keyboardEvent.type == SDL_KEYDOWN)
 			currKeysState[keyArrayIndex] = true;
 		else if (keyboardEvent.type == SDL_KEYUP)
@@ -35,6 +46,7 @@ void Keyboard::HandleKeyboardEvent(SDL_Event& keyboardEvent) {
 	}
 }
 
+//return true if a given key is held, false if not
 bool Keyboard::IsKeyHeld(int key) {
 	int keyArrayIndex = GetKeyIndexFromSDLKeyCode(key);
 	if (keyArrayIndex != -1) {
@@ -49,6 +61,7 @@ bool Keyboard::IsKeyHeld(int key) {
 	return false;
 }
 
+//return true if a given key was released, false if not
 bool Keyboard::WasKeyReleased(int key) {
 	int keyArrayIndex = GetKeyIndexFromSDLKeyCode(key);
 	if (keyArrayIndex != -1) {
@@ -63,6 +76,7 @@ bool Keyboard::WasKeyReleased(int key) {
 	return false;
 }
 
+//return true if a given key was pressed, false if not
 bool Keyboard::WasKeyPressed(int key) {
 	int keyArrayIndex = GetKeyIndexFromSDLKeyCode(key);
 	if (keyArrayIndex != -1) {
@@ -78,7 +92,7 @@ bool Keyboard::WasKeyPressed(int key) {
 }
 
 int Keyboard::GetKeyIndexFromSDLKeyCode(int code) {
-	//convert an SDL Key code into our own key arrays index
+	//convert an SDL Key code into our own key arrays indices
 	std::unordered_map<int, int>::const_iterator iter = SDLKeyMap.find(code);
 	if (iter != SDLKeyMap.end())
 		return iter->second;
