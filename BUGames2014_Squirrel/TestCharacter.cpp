@@ -105,7 +105,7 @@ void TestCharacter::UpdateJumping(unsigned int deltaTime) {
 	setY(position.Y);
 
 	//slow rate of ascent a bit for next frame
-	jumpVel -= (0.004 * jumpVel) * deltaTime;
+	jumpVel -= (0.004f * jumpVel) * deltaTime;
 	
 	//if ascent has slowed down to not much...
 	if (jumpVel < 0.1f) {
@@ -125,10 +125,10 @@ void TestCharacter::UpdateFalling(unsigned int deltaTime) {
 	setY(position.Y);
 
 	//increase fall speed for next frame
-	fallingVel += (0.005 * fallingVel) * deltaTime;
+	fallingVel += (0.005f * fallingVel) * deltaTime;
 }
 
 //draw this characters sprite
 void TestCharacter::Draw(SDL_Renderer& renderer) {
-	sprite->Draw(position.X, position.Y, sprite->GetWidth(), sprite->GetHeight(), renderer);
+	sprite->Draw((int)position.X, (int)position.Y, sprite->GetWidth(), sprite->GetHeight(), renderer);
 }

@@ -53,20 +53,16 @@ void MenuState::Update(unsigned int deltaTime) {
 	//menuChoice being 0 means "New Game" was selected
 	if (menuChoice == 0) {
 		
-		//get state manager to remove all current states
-		stateManager->RemoveAllStates();
-
 		/* see if we can get the padID of the "starting" pad, and pass it to ActionStates constructor
 		 * if we can't get the starting padID (say the keyboard was used to start the game) then 
 		 * just pass 0 for the padID, which is the first player pad */
 		int startingPadId = menu->GetSelectingpadId();
 		if (startingPadId == -1)
-			stateManager->AddState(new ActionState(stateManager, renderer, input, 0, winWidth, winHeight));
+			stateManager->ChangeState(new ActionState(stateManager, renderer, input, 0, winWidth, winHeight));
 		else
-			stateManager->AddState(new ActionState(stateManager, renderer, input, startingPadId,  winWidth, winHeight));
+			stateManager->ChangeState(new ActionState(stateManager, renderer, input, startingPadId,  winWidth, winHeight));
 
-		//delete ourselves and return, this needs refactoring
-		delete this;
+		//this state is now gone, so all we can do is return
 		return;
 	}
 	//menucChoice of 1 means "Credits" was selected

@@ -51,18 +51,25 @@ void ItemManager::SpawnAcorn() {
 }
 
 void ItemManager::SpawnGoal() {
-	//hacky, clears goalItems iter each spawn
-	std::vector<ItemBase*>::iterator iter;
-	for (iter = goalItems.begin(); iter != goalItems.end(); iter++) {
-		delete (*iter);
+	//hacky, clears goalItems vector each spawn
+	std::vector<ItemBase*>::iterator iterItems;
+	std::vector<ItemBase*>::iterator iterGoals;
+	for (iterGoals = goalItems.begin(); iterGoals != goalItems.end(); iterGoals++) {
+		for (iterItems = spawnedItems.begin(); iterItems != spawnedItems.end(); iterItems++) {
+			if ((*iterItems) == (*iterGoals)) {
+				spawnedItems.erase(iterItems);
+				break;
+			}
+		}	
+		delete (*iterGoals);
 	}
 	goalItems.clear();
 
 	GoalItem* goalItem = new GoalItem(theLevel, playerManager, renderer, input);
 	Vector2D* goalLocation = theLevel->GetAGoalLocation();
-	goalItem->Spawn(goalLocation->X, goalLocation->Y);
+	goalItem->Spawn((int)goalLocation->X, (int)goalLocation->Y);
 
-	//first list if for update / drawing, second for easy finding
+	//first list is for update / drawing, second for easy finding
 	spawnedItems.push_back(goalItem);
 	goalItems.push_back(goalItem);
 }

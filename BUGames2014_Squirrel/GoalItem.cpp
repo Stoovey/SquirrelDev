@@ -15,12 +15,12 @@ void GoalItem::Update(unsigned int deltaTime) {
 }
 
 void GoalItem::Draw(SDL_Renderer* renderer) {
-	goalSprite->Draw(pos.X, pos.Y, goalSprite->GetWidth(), goalSprite->GetHeight(), *renderer);
+	goalSprite->Draw((int)pos.X, (int)pos.Y, goalSprite->GetWidth(), goalSprite->GetHeight(), *renderer);
 }
 
 void GoalItem::Spawn(int x, int y) {
-	pos.X = x;
-	pos.Y = y;
+	pos.X = (float)x;
+	pos.Y = (float)y;
 }
 
 void GoalItem::Destroy() {

@@ -16,7 +16,7 @@ public:
 
 	//gamestate management functions
 	void AddState(GameState* state);
-	void RemoveAllStates();
+	void ChangeState(GameState* state);
 	void RemoveTopState();
 
 	//called to update and draw the states which need it

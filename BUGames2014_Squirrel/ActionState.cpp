@@ -39,7 +39,6 @@ ActionState::ActionState(GamestateManager* stateManager, SDL_Renderer* renderer,
 //destructor
 ActionState::~ActionState() {
 	//delete everything we have 'new-ed' and stored in this class
-	delete testCharacter;
 	delete theLevel;
 	delete collision;
 	delete characterManager;
@@ -74,27 +73,34 @@ void ActionState::Update(unsigned int deltaTime) {
 		characterManager->AddPlayer(startPadIndex);
 	}
 
-	//see if anyone has met the victory conditions
-	CheckHasAnyoneWon();
-
 	//if anyone has pressed escape or X360 Back, get StateManager to throw PausedState onto the states list
 	if(input->WasKeyPressed(SDLK_ESCAPE) || input->WasPadButtonPressedByAnyPad(SDL_CONTROLLER_BUTTON_BACK) != -1)
 	{
 		stateManager->AddState(new PausedState(stateManager, renderer, input, winWidth, winHeight));
 	}
+
+	/* we always want to return after using GameStateManager::ChangeState as it
+	 * removes THIS state and deletes it. Continuing to run code in here could
+	 * cause a crash */
+	if (CheckHasAnyoneWon()) {
+		stateManager->ChangeState(new WinState(characterManager,stateManager, renderer, input, winWidth, winHeight));
+		return;
+	}
 }
 
 //see if anyone has met the victory conditions
-void ActionState::CheckHasAnyoneWon() {
+bool ActionState::CheckHasAnyoneWon() {
 
 	//go over each player in the player list
-	for (int i = 0; i < characterManager->GetPlayers().size(); i++) {
-		//if a player has a score of 10, get StateManager to switch to WonState
-		if (characterManager->GetPlayers().at(i)->GetScore() >= 10) {
-			stateManager->RemoveAllStates();
-			stateManager->AddState(new WinState(characterManager,stateManager, renderer, input, winWidth, winHeight));
+	for (unsigned int i = 0; i < characterManager->GetPlayers().size(); i++) {
+		//if a player has a score of 10, return true
+		if (characterManager->GetPlayers().at(i)->GetScore() >= 3) {
+			return true;
 		}
 	}
+
+	//if we get here then no player has won
+	return false;
 }
 
 //check collisions between things - NEEDS TIDYING / REFACTORING
@@ -114,14 +120,14 @@ void ActionState::DoCollisions() {
 		if ((*iter)->GetState() == PlayerState::Falling) {
 
 			//...check to see if they touch ANY platform block in the level...
-			for (int i = 0; i < theLevel->GetPlatformBlocks()->size(); i++) {
+			for (unsigned int i = 0; i < theLevel->GetPlatformBlocks()->size(); i++) {
 				if (collision->boxCollision(
-					(*iter)->getX(),
-					(*iter)->getY(), 
+					(int)(*iter)->getX(),
+					(int)(*iter)->getY(), 
 					(*iter)->getW(), 
 					(*iter)->getH(),
-					theLevel->GetPlatformBlocks()->at(i)->getX(), 
-					theLevel->GetPlatformBlocks()->at(i)->getY(), 
+					(int)theLevel->GetPlatformBlocks()->at(i)->getX(), 
+					(int)theLevel->GetPlatformBlocks()->at(i)->getY(), 
 					theLevel->GetPlatformBlocks()->at(i)->getW(), 
 					theLevel->GetPlatformBlocks()->at(i)->getH())) {
 
@@ -138,14 +144,14 @@ void ActionState::DoCollisions() {
 			bool noHit = true;
 
 			//...but check them against every platform...
-			for (int i = 0; i < theLevel->GetPlatformBlocks()->size(); i++) {
+			for (unsigned int i = 0; i < theLevel->GetPlatformBlocks()->size(); i++) {
 				if (collision->boxCollision(
-					(*iter)->getX(),
-					(*iter)->getY(), 
+					(int)(*iter)->getX(),
+					(int)(*iter)->getY(), 
 					(*iter)->getW(), 
 					(*iter)->getH(),
-					theLevel->GetPlatformBlocks()->at(i)->getX(), 
-					theLevel->GetPlatformBlocks()->at(i)->getY(), 
+					(int)theLevel->GetPlatformBlocks()->at(i)->getX(), 
+					(int)theLevel->GetPlatformBlocks()->at(i)->getY(), 
 					theLevel->GetPlatformBlocks()->at(i)->getW(), 
 					theLevel->GetPlatformBlocks()->at(i)->getH())) {
 
@@ -187,7 +193,7 @@ void ActionState::DoPlayerAttacks() {
 	std::vector<CharacterBase*>& players = characterManager->GetPlayers();
 
 	//for every player in the players list...
-	for (int i = 0; i < players.size(); i++) {
+	for (unsigned int i = 0; i < players.size(); i++) {
 
 		//...if they are inactive, continue on to the next
 		if (!players.at(i)->GetIsActive()) continue;
@@ -196,19 +202,19 @@ void ActionState::DoPlayerAttacks() {
 		if (input->WasPadButtonPressed(players.at(i)->GetPadID(), SDL_CONTROLLER_BUTTON_B)) {
 			
 			//...iterate over the other players, check for collisions between them
-			for (int j = 0; j < players.size(); j++) {
+			for (unsigned int j = 0; j < players.size(); j++) {
 				
 				//don't check against self
 				if (j == i) continue;
 				if (!players.at(j)->GetIsActive()) continue;
 
 				if (collision->boxCollision(
-					players.at(i)->getX(),
-					players.at(i)->getY(),
+					(int)players.at(i)->getX(),
+					(int)players.at(i)->getY(),
 					players.at(i)->getW(),
 					players.at(i)->getH(),
-					players.at(j)->getX(),
-					players.at(j)->getY(),
+					(int)players.at(j)->getX(),
+					(int)players.at(j)->getY(),
 					players.at(j)->getW(),
 					players.at(j)->getH())) {
 				

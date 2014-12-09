@@ -9,7 +9,7 @@ level::level(){
 	goalLocations->push_back(new Vector2D(920, 440));
 	goalLocations->push_back(new Vector2D(300, 440));
 
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 }
 
 void level::init(SDL_Renderer* render){
@@ -21,12 +21,12 @@ level::~level(){
 	delete grass;
 
 	//get rid of platform block sprites
-	for (int i = 0; i < platformBlocks->size(); i++)
+	for (unsigned int i = 0; i < platformBlocks->size(); i++)
 		delete platformBlocks->at(i);
 	delete platformBlocks;
 
 	//get rid of platform block sprites
-	for (int i = 0; i < goalLocations->size(); i++)
+	for (unsigned int i = 0; i < goalLocations->size(); i++)
 		delete goalLocations->at(i);
 	delete goalLocations;
 }
@@ -131,7 +131,7 @@ void level::PopulateBlocksVector(SDL_Renderer* render) {
 
 void level::drawLevel(SDL_Renderer* render) {
 		
-	for (int i = 0; i < platformBlocks->size(); i++)
+	for (unsigned int i = 0; i < platformBlocks->size(); i++)
 		platformBlocks->at(i)->Draw(*render);
 }
 	

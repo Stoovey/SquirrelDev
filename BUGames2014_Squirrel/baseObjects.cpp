@@ -2,11 +2,11 @@
 /*--------------------------------------
 		baseObjects setters
 --------------------------------------*/
-	void baseObjects::setX(int x){
-		pos.x = x;
+	void baseObjects::setX(float x){
+		pos.x = (int)x;
 	}
-	void baseObjects::setY(int y){
-		pos.y = y;
+	void baseObjects::setY(float y){
+		pos.y = (int)y;
 	}
 	void baseObjects::setW(int w){
 		pos.w = w;
@@ -19,11 +19,11 @@
 /*--------------------------------------
 		baseObjects getters
 --------------------------------------*/
-	int baseObjects::getX(){
-		return pos.x;
+	float baseObjects::getX(){
+		return (float)pos.x;
 	}
-	int baseObjects::getY(){
-		return pos.y;
+	float baseObjects::getY(){
+		return (float)pos.y;
 	}
 	int baseObjects::getW(){
 		return pos.w;

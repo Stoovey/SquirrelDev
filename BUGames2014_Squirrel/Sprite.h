@@ -23,8 +23,8 @@ public:
 
 	/// Specify the position of the top-left corner of the sprite
 	/// Width and height are the image's original
-	virtual void Draw( int positionX, int positionY, SDL_Renderer& renderer );
 	virtual void Draw(SDL_Renderer& renderer);
+	virtual void Draw( int positionX, int positionY, SDL_Renderer& renderer );
 	virtual void Draw( int positionX, int positionY, int width, int height, SDL_Renderer& renderer );
 
 	int GetWidth() { return width; }

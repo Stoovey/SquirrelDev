@@ -14,12 +14,12 @@ Sprite::Sprite(std::string filename, int positionX, int positionY, int width, in
 
 	this->setW(width);
 	this->setH(height);
-	this->setX(positionX);
-	this->setY(positionY);
+	this->setX((float)positionX);
+	this->setY((float)positionY);
 	
 	LoadFromIMG(filename, &renderer);
 	
-	//bitr hacky, the LoadFromIMG above overrwrites W/H with the image sizes
+	//bit hacky, the LoadFromIMG above overrwrites W/H with the image sizes
 	this->width = width;
 	this->height = height;
 }
@@ -74,7 +74,7 @@ bool Sprite::LoadFromIMG( std::string filename, SDL_Renderer *renderer )
 }
 
 void Sprite::Draw(SDL_Renderer& renderer) {
-	Draw(this->getX(), this->getY(), this->getW(), this->getH(), renderer);
+	Draw((int)getX(), (int)getY(), this->getW(), this->getH(), renderer);
 }
 
 void Sprite::Draw( int positionX, int positionY, SDL_Renderer& renderer ) {
