@@ -82,7 +82,8 @@
     <ClInclude Include="baseObjects.h" />
     <ClInclude Include="CharacterBase.h" />
     <ClInclude Include="CharacterManager.h" />
-    <ClInclude Include="Collision.h" />
+    <ClInclude Include="CollisionHelper.h" />
+    <ClInclude Include="Config.h" />
     <ClInclude Include="CreditsState.h" />
     <ClInclude Include="Gamestate.h" />
     <ClInclude Include="GamestateManager.h" />
@@ -91,10 +92,12 @@
     <ClInclude Include="ItemBase.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="Keyboard.h" />
-    <ClInclude Include="level.h" />
+    <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="ServiceBase.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="PausedState.h" />
+    <ClInclude Include="Services.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestCharacter.h" />
     <ClInclude Include="TiledScrollingBkg.h" />
@@ -108,7 +111,7 @@
     <ClCompile Include="baseObjects.cpp" />
     <ClCompile Include="CharacterBase.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
-    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="CollisionHelper.cpp" />
     <ClCompile Include="CreditsState.cpp" />
     <ClCompile Include="GamestateManager.cpp" />
     <ClCompile Include="GoalItem.cpp" />
@@ -116,11 +119,12 @@
     <ClCompile Include="Itembase.cpp" />
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="Keyboard.cpp" />
-    <ClCompile Include="level.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PausedState.cpp" />
     <ClCompile Include="PeteMain.cpp" />
+    <ClCompile Include="Services.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestCharacter.cpp" />
     <ClCompile Include="TiledScrollingBkg.cpp" />

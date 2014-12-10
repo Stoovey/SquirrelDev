@@ -1,8 +1,9 @@
 #include "GamestateManager.h"
+#include <iostream>
 
 //delete any states
 GamestateManager::~GamestateManager() {
-	
+	std::cout << "GamestateManager dtor called" << std::endl;
 	//create an iterator, make it visit every element in the gamestates vector
 	std::vector<GameState*>::iterator iter;
 	for (iter = gameStates.begin(); iter != gameStates.end(); iter++) {
@@ -45,11 +46,11 @@ void GamestateManager::RemoveTopState() {
 	gameStates.pop_back();
 }
 
-//update only the 'top' state
-void GamestateManager::Update(unsigned int deltaTime) {
+//update only the 'top' state, if this returns false, the game should quit
+bool GamestateManager::Update(unsigned int deltaTime) {
 
 	//update only the last entry in the gamestates vector
-	gameStates.back()->Update(deltaTime);
+	return gameStates.back()->Update(deltaTime);
 }
 
 //draw every gamestate which is in use

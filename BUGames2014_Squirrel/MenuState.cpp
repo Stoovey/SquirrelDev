@@ -2,14 +2,16 @@
 #include <iostream>
 
 //constructor
-MenuState::MenuState(GamestateManager* stateManager, SDL_Renderer* renderer, InputManager* input, int winWidth, int winHeight) {
+MenuState::MenuState(Services* services) : GameState(services) {
 	
-	//store incoming parameters in memeber vars
-	this->stateManager = stateManager;
-	this->renderer = renderer;
-	this->input = input;
-	this->winWidth = winWidth;
-	this->winHeight = winHeight;
+	//get services for this state
+	this->config       = (Config*)services->GetService(Service::Config);
+	this->stateManager = (GamestateManager*)services->GetService(Service::GameStateManager);
+	this->input        = (InputManager*)services->GetService(Service::InputManager);
+	this->renderer     = services->GetSDL_Renderer();
+
+	int winWidth  = config->GetWinWidth();
+	int winHeight = config->GetWinHeight();
 
 	//add some scrolling background images
 	backgrounds.push_back(new TiledScrollingBkg(new Sprite("Content/Levels/Background_scaled.png", renderer), .01f, winWidth, winHeight));
@@ -45,7 +47,7 @@ MenuState::~MenuState() {
 }
 
 //update the menu state
-void MenuState::Update(unsigned int deltaTime) {
+bool MenuState::Update(unsigned int deltaTime) {
 	
 	//see what menu item was selected, if any
 	int menuChoice = menu->Update();
@@ -58,23 +60,23 @@ void MenuState::Update(unsigned int deltaTime) {
 		 * just pass 0 for the padID, which is the first player pad */
 		int startingPadId = menu->GetSelectingpadId();
 		if (startingPadId == -1)
-			stateManager->ChangeState(new ActionState(stateManager, renderer, input, 0, winWidth, winHeight));
+			stateManager->ChangeState(new ActionState(services, 0));
 		else
-			stateManager->ChangeState(new ActionState(stateManager, renderer, input, startingPadId,  winWidth, winHeight));
+			stateManager->ChangeState(new ActionState(services, startingPadId));
 
 		//this state is now gone, so all we can do is return
-		return;
+		return true;
 	}
 	//menucChoice of 1 means "Credits" was selected
 	else if (menuChoice == 1) {
 		//get stateManager to add credits state onto the list
-		stateManager->AddState(new CreditsState(stateManager, renderer, input, winWidth, winHeight));
+		stateManager->AddState(new CreditsState(services));
 	}
 	//menuState of 2 means quit was pressed
 	else if (menuChoice == 2)
 	{
 		//quit
-		exit(0); //needs changing
+		return false;
 	}
 
 	//iterate over the backgrounds vector, update each one (allow it to scroll)
@@ -82,6 +84,7 @@ void MenuState::Update(unsigned int deltaTime) {
 	for (iter = backgrounds.begin(); iter != backgrounds.end(); iter++)
 		(*iter)->Update(deltaTime);
 
+	return true;
 }
 
 //draw menu state
@@ -92,7 +95,7 @@ void MenuState::Draw(SDL_Renderer* renderer) {
 		(*iter)->Draw(renderer);
 
 	//draw the 'static' background and the menu
-	background->Draw(0, 0, winWidth, winHeight, *renderer);
+	background->Draw(0, 0, config->GetWinWidth(), config->GetWinHeight(), *renderer);
 	menu->Draw(renderer);
 }
 

@@ -37,6 +37,12 @@
     <Filter Include="Source Files\Items">
       <UniqueIdentifier>{eb659fe8-faad-43b1-9a06-c4a438e7c753}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Services">
+      <UniqueIdentifier>{5b9e9308-0430-4aa2-a469-a07f81d02e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Services">
+      <UniqueIdentifier>{69931a10-8b86-4238-a562-7df698162456}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputManager.h">
@@ -52,12 +58,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="baseObjects.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="menu.h">
@@ -111,6 +111,21 @@
     <ClInclude Include="WinState.h">
       <Filter>Header Files\Gamestate</Filter>
     </ClInclude>
+    <ClInclude Include="Services.h">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="ServiceBase.h">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="InputManager.cpp">
@@ -126,12 +141,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="baseObjects.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PeteMain.cpp">
@@ -184,6 +193,15 @@
     </ClCompile>
     <ClCompile Include="GoalItem.cpp">
       <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Services.cpp">
+      <Filter>Source Files\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionHelper.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

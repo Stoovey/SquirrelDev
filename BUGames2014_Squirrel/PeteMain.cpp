@@ -1,12 +1,11 @@
 #include <SDL.h>
 #include <iostream>
 #include <string>
-#include "InputManager.h"
 #include "TestCharacter.h"
-#include "Collision.h"
-#include "level.h"
-#include "GamestateManager.h"
 #include "MenuState.h"
+#include "Services.h"
+#include "GamestateManager.h"
+#include "Config.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,17 +20,25 @@ int main(int argc, char *argv[])
 	int winPosY = 200;
 	int winWidth = 1280;
 	int winHeight = 720;
-	SDL_Window *window = SDL_CreateWindow("Alpha build -> Heterdox Games", winPosX, winPosY,	winWidth, winHeight,
+	SDL_Window *window = SDL_CreateWindow("Alpha build -> Heterdox Games", winPosX, winPosY, winWidth, winHeight,
 		SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 
-	SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, 0);
+	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+
+	//main services container
+	Services* services = new Services(renderer);
+
+	//store away some window details
+	Config* config = (Config*)services->GetService(Service::Config);
+	config->SetWinWidth(winWidth);
+	config->SetWinHeight(winHeight);
 
 	//Handles all input
-	InputManager inputManager = InputManager();
+	InputManager* inputManager = (InputManager*)services->GetService(Service::InputManager);
 
 	//gameState handling
-	GamestateManager* gamestateManager = new GamestateManager();
-	GameState* menuState = new MenuState(gamestateManager, renderer, &inputManager, winWidth, winHeight);
+	GamestateManager* gamestateManager = (GamestateManager*)services->GetService(Service::GameStateManager);
+	GameState* menuState = new MenuState(services);
 	gamestateManager->AddState(menuState);
 
 	//timing values so everything works the same
@@ -48,7 +55,7 @@ int main(int argc, char *argv[])
 		currentTime = SDL_GetTicks();
 		deltaTime = currentTime - lastTime;
 
-		inputManager.Update();
+		inputManager->Update();
 
 		//event handling loop
 		SDL_Event incomingEvent;
@@ -61,12 +68,12 @@ int main(int argc, char *argv[])
 			case SDL_CONTROLLERBUTTONUP:
 			case SDL_CONTROLLERDEVICEADDED:
 			case SDL_CONTROLLERDEVICEREMOVED:
-				inputManager.HandleGamepadEvent(incomingEvent);
+				inputManager->HandleGamepadEvent(incomingEvent);
 				break;
 
 			case SDL_KEYDOWN:
 			case SDL_KEYUP:
-				inputManager.HandleKeyboardEvent(incomingEvent);
+				inputManager->HandleKeyboardEvent(incomingEvent);
 				break;
 
 			case SDL_QUIT:
@@ -75,8 +82,11 @@ int main(int argc, char *argv[])
 			}
 		}
 
+		//SDL_Quit may have occured above
+		if (!go) break;
+		
 		//update state system
-		gamestateManager->Update(deltaTime);
+		go = gamestateManager->Update(deltaTime);
 
 		// Draw stuff
 		// Start by clearing what was drawn before
@@ -92,11 +102,11 @@ int main(int argc, char *argv[])
 		lastTime = currentTime;
 	}
 
+	delete services;
+
 	// If we get outside the main game loop, it means our user has requested we exit
 	SDL_DestroyWindow( window );
 	SDL_Quit();
-
-	delete gamestateManager;
 
 	return 0;
 }

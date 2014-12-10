@@ -1,14 +1,13 @@
 #include "PausedState.h"
 
 //constructor
-PausedState::PausedState(GamestateManager* stateManager, SDL_Renderer* renderer, InputManager* input, int winWidth, int winHeight)
+PausedState::PausedState(Services* services) : GameState(services)
 {
-	//store incoming parameters in memebr vars
-	this->stateManager = stateManager;
-	this->renderer = renderer;
-	this->input = input;
-	this->winWidth = winWidth;
-	this->winHeight = winHeight;
+	//get any services we need
+	this->config       = (Config*)services->GetService(Service::Config);
+	this->stateManager = (GamestateManager*)services->GetService(Service::GameStateManager);
+	this->input        = (InputManager*)services->GetService(Service::InputManager);
+	this->renderer     = services->GetSDL_Renderer();
 	
 	//create background sprite
 	background = new Sprite("Content/UserInterface/background.png", renderer);
@@ -21,7 +20,7 @@ PausedState::~PausedState() {
 }
 
 //update paused state
-void PausedState::Update(unsigned int deltaTime) {
+bool PausedState::Update(unsigned int deltaTime) {
 	
 	/* check if escape key or X360 back was pressed, if so then
 	 * get stateManager to remove the top state, which will always
@@ -29,10 +28,12 @@ void PausedState::Update(unsigned int deltaTime) {
 
 	if (input->WasKeyPressed(SDLK_ESCAPE)|| input->WasPadButtonPressedByAnyPad(SDL_CONTROLLER_BUTTON_BACK) != -1)
 		stateManager->RemoveTopState();
+
+	return true;
 }
 
 //draw paused state
 void PausedState::Draw(SDL_Renderer* renderer) {
 	//draw background sprite
-	background->Draw(0, 0, winWidth, winHeight, *renderer);
+	background->Draw(0, 0, config->GetWinWidth(), config->GetWinHeight(), *renderer);
 }

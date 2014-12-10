@@ -3,9 +3,9 @@
 
 #include "baseObjects.h"
 #include "Vector2D.h"
-#include "level.h"
+#include "LevelManager.h"
 #include "CharacterManager.h"
-#include "Collision.h"
+#include "CollisionHelper.h"
 #include "InputManager.h"
 
 namespace ItemState {
@@ -17,7 +17,7 @@ namespace ItemState {
 class ItemBase {
 
 public:
-	ItemBase(level* theLevel, CharacterManager* playerManager, InputManager* input);
+	ItemBase(LevelManager* theLevel, CharacterManager* playerManager, InputManager* input);
 	~ItemBase();
 
 	virtual void Update(unsigned int deltaTime) = 0;
@@ -34,10 +34,10 @@ public:
 
 protected:
 	ItemState::State itemState;
-	level* theLevel;
+	LevelManager* theLevel;
 	CharacterManager* playerManager;
 	InputManager* input;
-	Collision* collision;
+	CollisionHelper* collision;
 
 	//pos / move data
 	Vector2D pos;

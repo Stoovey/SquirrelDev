@@ -1,10 +1,12 @@
 #include "ItemManager.h"
 
-ItemManager::ItemManager(level* thelevel, CharacterManager* playerManager, SDL_Renderer* renderer, InputManager* input) {
-	this->theLevel = thelevel;
-	this->playerManager = playerManager;
-	this->renderer = renderer;
-	this->input = input;
+ItemManager::ItemManager(Services* services) {
+
+	//store any services we need
+	this->theLevel         = (LevelManager*)services->GetService(Service::LevelManager);
+	this->characterManager = (CharacterManager*)services->GetService(Service::CharacterManager);
+	this->input            = (InputManager*)services->GetService(Service::InputManager);
+	this->renderer         = services->GetSDL_Renderer();
 
 	SpawnGoal();
 }
@@ -45,7 +47,7 @@ void ItemManager::Draw(SDL_Renderer* renderer) {
 
 void ItemManager::SpawnAcorn() {
 
-	acornItem = new AcornItem(theLevel, playerManager, renderer, input);
+	acornItem = new AcornItem(theLevel, characterManager, renderer, input);
 	acornItem->Spawn((rand() % 1080) + 100, 0);
 	spawnedItems.push_back(acornItem);
 }
@@ -65,7 +67,7 @@ void ItemManager::SpawnGoal() {
 	}
 	goalItems.clear();
 
-	GoalItem* goalItem = new GoalItem(theLevel, playerManager, renderer, input);
+	GoalItem* goalItem = new GoalItem(theLevel, characterManager, renderer, input);
 	Vector2D* goalLocation = theLevel->GetAGoalLocation();
 	goalItem->Spawn((int)goalLocation->X, (int)goalLocation->Y);
 

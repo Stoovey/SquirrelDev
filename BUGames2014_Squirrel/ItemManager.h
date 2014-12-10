@@ -2,16 +2,17 @@
 #define _ITEMMANAGER_
 
 #include <vector>
+#include "ServiceBase.h"
 #include "ItemBase.h"
 #include "AcornItem.h"
 #include "GoalItem.h"
-#include "level.h"
+#include "LevelManager.h"
 #include "CharacterManager.h"
 
-class ItemManager {
+class ItemManager : public ServiceBase {
 
 public:
-	ItemManager(level* thelevel, CharacterManager* playerManager, SDL_Renderer* renderer, InputManager* input);
+	ItemManager(Services* services);
 	~ItemManager();
 
 	void Update(unsigned int deltaTime);
@@ -27,8 +28,8 @@ private:
 	AcornItem* acornItem;
 
 	InputManager* input;
-	level* theLevel;
-	CharacterManager* playerManager;
+	LevelManager* theLevel;
+	CharacterManager* characterManager;
 	SDL_Renderer* renderer; //needed for item ctors
 };
 

@@ -1,8 +1,9 @@
 #include "CharacterManager.h"
 
 //constructor
-CharacterManager::CharacterManager(SDL_Renderer* render, InputManager* input) {
-	this->input = input;
+CharacterManager::CharacterManager(Services* services) {
+	this->input = (InputManager*)(services->GetService(Service::InputManager));
+	SDL_Renderer* render = services->GetSDL_Renderer();
 	
 	//add four players to the players list, use a different sprite for each
 	players.push_back(new TestCharacter("Content/Characters/Squirrel/character_sprite.png", *render, input));
@@ -19,7 +20,7 @@ CharacterManager::CharacterManager(SDL_Renderer* render, InputManager* input) {
 	Setting up Vector of numbers
 	----------------------------------*/
 	numbersUI.push_back(new Sprite("Content/UserInterface/score0.png", render));
-	numbersUI.push_back(new Sprite("Content/UserInterface/score0.png", render));
+	numbersUI.push_back(new Sprite("Content/UserInterface/score1.png", render));
 	numbersUI.push_back(new Sprite("Content/UserInterface/score2.png", render));
 	numbersUI.push_back(new Sprite("Content/UserInterface/score3.png", render));
 	numbersUI.push_back(new Sprite("Content/UserInterface/score4.png", render));

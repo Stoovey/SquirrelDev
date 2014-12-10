@@ -1,6 +1,7 @@
 #ifndef _GAMESTATEMANAGER_
 #define _GAMESTATEMANAGER_
 
+#include "ServiceBase.h"
 #include "Gamestate.h"
 #include <vector>
 #include <SDL.h>
@@ -8,7 +9,7 @@
 /* GameStateManager deals with updating and drawing the correct 
  * GameStates, and handling the transitions between them. States 
  * are things like ActionState, PausedState, MenuState */
-class GamestateManager {
+class GamestateManager : public ServiceBase {
 
 public:
 	//destructor
@@ -20,7 +21,7 @@ public:
 	void RemoveTopState();
 
 	//called to update and draw the states which need it
-	void Update(unsigned int deltaTime);
+	bool Update(unsigned int deltaTime);
 	void Draw(SDL_Renderer* renderer);
 
 private:

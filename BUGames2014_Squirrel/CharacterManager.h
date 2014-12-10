@@ -1,18 +1,19 @@
 #ifndef _CHARACTERMANAGER_
 #define _CHARACTERMANAGER_
 
+#include "Services.h"
 #include "CharacterBase.h"
 #include "TestCharacter.h"
 #include "InputManager.h"
-#include "Collision.h"
+#include "CollisionHelper.h"
 #include "Sprite.h"
 #include <vector>
 
-class CharacterManager {
+class CharacterManager : public ServiceBase {
 
 public:
 	//constructor / destructor
-	CharacterManager(SDL_Renderer* render, InputManager* input);
+	CharacterManager(Services* services);
 	~CharacterManager();
 
 	//allow players to join or leave the game

@@ -1,14 +1,13 @@
 #include "WinState.h"
 
-WinState::WinState(CharacterManager* players, GamestateManager* stateManager, SDL_Renderer* renderer, InputManager* input, int winWidth, int winHeight)
+WinState::WinState(Services* services) : GameState(services)
 {
-	//store incoming vars in member vars
-	this->players = players;
-	this->stateManager = stateManager;
-	this->renderer = renderer;
-	this->input = input;
-	this->winWidth = winWidth;
-	this->winHeight = winHeight;
+	//get the services we need
+	this->config           = (Config*)services->GetService(Service::Config);
+	this->characterManager = (CharacterManager*)services->GetService(Service::CharacterManager);
+	this->stateManager     = (GamestateManager*)services->GetService(Service::GameStateManager);
+	this->input            = (InputManager*)services->GetService(Service::InputManager);
+	this->renderer         = services->GetSDL_Renderer();
 	
 	//create background this state uses
 	background = new Sprite("Content/MainMenu/credits.png", renderer);
@@ -22,12 +21,13 @@ WinState::~WinState() {
 }
 
 //update win state
-void WinState::Update(unsigned int deltaTime) {
+bool WinState::Update(unsigned int deltaTime) {
 	//does nothing, this means there is no way off the win screen
+	return true;
 }
 
 //draw win state
 void WinState::Draw(SDL_Renderer* renderer) {
 	//draw the background we use for winstate
-	background->Draw(0, 0, winWidth, winHeight, *renderer);
+	background->Draw(0, 0, config->GetWinWidth(), config->GetWinHeight(), *renderer);
 }

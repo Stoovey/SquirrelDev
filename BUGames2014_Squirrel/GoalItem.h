@@ -6,7 +6,7 @@
 class GoalItem : public ItemBase {
 
 public:
-	GoalItem(level* theLevel, CharacterManager* playerManager, SDL_Renderer* renderer, InputManager* input);
+	GoalItem(LevelManager* theLevel, CharacterManager* playerManager, SDL_Renderer* renderer, InputManager* input);
 	~GoalItem();
 
 	void Update(unsigned int deltaTime);

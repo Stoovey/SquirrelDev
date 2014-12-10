@@ -3,11 +3,12 @@
 #include <SDL.h>
 #include <iostream>
 #include <unordered_map>
+#include "ServiceBase.h"
 #include "Vector2D.h"
 #include "X360Controller.h"
 #include "Keyboard.h"
 
-class InputManager {
+class InputManager : public ServiceBase {
 
 public:
 	//constructor / destructor

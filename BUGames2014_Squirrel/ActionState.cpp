@@ -1,31 +1,26 @@
 #include "ActionState.h"
 
 //constructor
-ActionState::ActionState(GamestateManager* stateManager, SDL_Renderer* renderer, InputManager* input, int startingPadId, int winWidth, int winHeight) {
-	//store incoming parameters in object member vars
-	this->stateManager = stateManager;
-	this->input = input;
-	this->renderer = renderer;
-	this->winHeight = winHeight;
-	this->winWidth = winWidth;
+ActionState::ActionState(Services* services, int startingPadId) : GameState(services) {
 
-	/* some member vars do not have their objects / values passed to this constructor
-	 * but instead need creating here. We do this below */
-
+	//grab hold of the services we need for this state
+	this->config           = (Config*)services->GetService(Service::Config);
+	this->characterManager = (CharacterManager*)services->GetService(Service::CharacterManager);
+	this->stateManager     = (GamestateManager*)services->GetService(Service::GameStateManager);
+	this->input            = (InputManager*)services->GetService(Service::InputManager);
+	this->collision	       = (CollisionHelper*)services->GetService(Service::CollisionHelper);
+	this->theLevel         = (LevelManager*)services->GetService(Service::LevelManager);
+	this->itemManager      = (ItemManager*)services->GetService(Service::ItemManager);
+	this->renderer         = services->GetSDL_Renderer();
+	
 	//create character manager, add a player with whatever padID we were passed
-	characterManager = new CharacterManager(renderer, input);
 	characterManager->AddPlayer(startingPadId);
 
-	//create and initialise the level
-	theLevel = new level();
-	theLevel->init(renderer);
-
-	//create a new collision object
-	collision = new Collision();
-	
 	//create ItemManager and spawn the acorn
-	itemManager = new ItemManager(theLevel, characterManager, renderer, input);
 	itemManager->SpawnAcorn();
+
+	int winWidth = config->GetWinWidth();
+	int winHeight = config->GetWinHeight();
 
 	/* add five background images to the 'backgrounds' memeber (which is a std::vector<TiledScrollingBkg*>)
 	 * notice how the last 3 have 0.f passed as their scroll speed, meaning they will stay fixed (tree layers) */
@@ -39,10 +34,6 @@ ActionState::ActionState(GamestateManager* stateManager, SDL_Renderer* renderer,
 //destructor
 ActionState::~ActionState() {
 	//delete everything we have 'new-ed' and stored in this class
-	delete theLevel;
-	delete collision;
-	delete characterManager;
-	delete itemManager;
 
 	//for the backgrounds, we iterate over the vector they are in, deleting each as we go
 	std::vector<TiledScrollingBkg*>::iterator iter;
@@ -51,7 +42,7 @@ ActionState::~ActionState() {
 }
 
 //update this ActionState
-void ActionState::Update(unsigned int deltaTime) {
+bool ActionState::Update(unsigned int deltaTime) {
 
 	//CharacterManager will handle player updates
 	characterManager->Update(deltaTime);
@@ -76,16 +67,18 @@ void ActionState::Update(unsigned int deltaTime) {
 	//if anyone has pressed escape or X360 Back, get StateManager to throw PausedState onto the states list
 	if(input->WasKeyPressed(SDLK_ESCAPE) || input->WasPadButtonPressedByAnyPad(SDL_CONTROLLER_BUTTON_BACK) != -1)
 	{
-		stateManager->AddState(new PausedState(stateManager, renderer, input, winWidth, winHeight));
+		stateManager->AddState(new PausedState(services));
 	}
 
 	/* we always want to return after using GameStateManager::ChangeState as it
 	 * removes THIS state and deletes it. Continuing to run code in here could
 	 * cause a crash */
 	if (CheckHasAnyoneWon()) {
-		stateManager->ChangeState(new WinState(characterManager,stateManager, renderer, input, winWidth, winHeight));
-		return;
+		stateManager->ChangeState(new WinState(services));
+		return true;
 	}
+
+	return true;
 }
 
 //see if anyone has met the victory conditions
@@ -94,7 +87,7 @@ bool ActionState::CheckHasAnyoneWon() {
 	//go over each player in the player list
 	for (unsigned int i = 0; i < characterManager->GetPlayers().size(); i++) {
 		//if a player has a score of 10, return true
-		if (characterManager->GetPlayers().at(i)->GetScore() >= 3) {
+		if (characterManager->GetPlayers().at(i)->GetScore() >= 10) {
 			return true;
 		}
 	}

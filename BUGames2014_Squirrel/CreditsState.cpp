@@ -1,15 +1,14 @@
 #include "CreditsState.h"
 
 //constructor
-CreditsState::CreditsState(GamestateManager* stateManager, SDL_Renderer* renderer, InputManager* input, int winWidth, int winHeight)
+CreditsState::CreditsState(Services* services) : GameState(services)
 {
-	//store incoming parameters in member vars
-	this->stateManager = stateManager;
-	this->renderer = renderer;
-	this->input = input;
-	this->winWidth = winWidth;
-	this->winHeight = winHeight;
-	
+	//get services we need
+	this->config       = (Config*)services->GetService(Service::Config);
+	this->stateManager = (GamestateManager*)services->GetService(Service::GameStateManager);
+	this->input        = (InputManager*)services->GetService(Service::InputManager);
+	this->renderer     = services->GetSDL_Renderer();
+
 	//create background sprite
 	background = new Sprite("Content/MainMenu/credits.png", renderer);
 
@@ -22,7 +21,7 @@ CreditsState::~CreditsState() {
 }
 
 //update this state
-void CreditsState::Update(unsigned int deltaTime) {
+bool CreditsState::Update(unsigned int deltaTime) {
 	
 	/* if escape or X360 Back are pressed by anyone then
 	 * then tell stateManager to remove the 'top' state
@@ -33,10 +32,12 @@ void CreditsState::Update(unsigned int deltaTime) {
 		stateManager->RemoveTopState();
 	else if(input->WasPadButtonPressedByAnyPad(SDL_CONTROLLER_BUTTON_BACK) != -1)
 		stateManager->RemoveTopState();
+
+	return true;
 }
 
 //draw this state
 void CreditsState::Draw(SDL_Renderer* renderer) {
 	//draw the background sprite
-	background->Draw(0, 0, winWidth, winHeight, *renderer);
+	background->Draw(0, 0, config->GetWinWidth(), config->GetWinHeight(), *renderer);
 }

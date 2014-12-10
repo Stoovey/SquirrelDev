@@ -1,6 +1,6 @@
-#include"level.h"
+#include "LevelManager.h"
 
-level::level(){
+LevelManager::LevelManager(Services* services){
 	platformBlocks = new std::vector<Sprite*>;
 	goalLocations  = new std::vector<Vector2D*>;
 
@@ -9,15 +9,14 @@ level::level(){
 	goalLocations->push_back(new Vector2D(920, 440));
 	goalLocations->push_back(new Vector2D(300, 440));
 
+	SDL_Renderer* render = services->GetSDL_Renderer();
+	grass = new Sprite("Content/Levels/block.png",render);
+	PopulateBlocksVector(render);
+
 	srand((unsigned int)time(NULL));
 }
 
-void level::init(SDL_Renderer* render){
-	grass = new Sprite("Content/Levels/block.png",render);
-	PopulateBlocksVector(render);
-}
-
-level::~level(){
+LevelManager::~LevelManager(){
 	delete grass;
 
 	//get rid of platform block sprites
@@ -31,7 +30,7 @@ level::~level(){
 	delete goalLocations;
 }
 
-void level::PopulateBlocksVector(SDL_Renderer* render) {
+void LevelManager::PopulateBlocksVector(SDL_Renderer* render) {
 	//HARDCODE THE LEVEL DESIGN
 	std::string grassBlock = "Content/Levels/block.png";
 	
@@ -129,17 +128,17 @@ void level::PopulateBlocksVector(SDL_Renderer* render) {
 	platformBlocks->push_back(new Sprite(BlockR, 1280-64*3-32,720-32*16,32,32,*render));
 }
 
-void level::drawLevel(SDL_Renderer* render) {
+void LevelManager::drawLevel(SDL_Renderer* render) {
 		
 	for (unsigned int i = 0; i < platformBlocks->size(); i++)
 		platformBlocks->at(i)->Draw(*render);
 }
 	
-std::vector<Sprite*>* level::GetPlatformBlocks() {
+std::vector<Sprite*>* LevelManager::GetPlatformBlocks() {
 	return platformBlocks;
 }
 
-Vector2D* level::GetAGoalLocation() {
+Vector2D* LevelManager::GetAGoalLocation() {
 	int random = rand(); 
 	int index = random % (int)goalLocations->size();
 

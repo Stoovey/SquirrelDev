@@ -8,7 +8,7 @@
 class AcornItem : public ItemBase {
 
 public:
-	AcornItem(level* theLevel, CharacterManager* playerManager, SDL_Renderer* renderer, InputManager* input);
+	AcornItem(LevelManager* theLevel, CharacterManager* playerManager, SDL_Renderer* renderer, InputManager* input);
 
 	void Update(unsigned int deltaTime);
 	void Draw(SDL_Renderer* renderer);
