@@ -9,6 +9,8 @@
 
 int main(int argc, char *argv[])
 {
+	//this change was made on Ben laptop
+
 	// Initialise
 	if( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER ) < 0 )
 	{
