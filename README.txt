@@ -10,14 +10,11 @@ Right Trigger		=	Throw Acorn while holding
 B			=	Tackle someone while they are holding the acorn
 A			=	Jump
 
-
-
-Contact:
-Alexander Jones = @Mr_J90K alexanderrjones104@gmail.com
-Steven Reynolds = @StevenReynold96 stevenareynolds@hotmail.com
-Pete Allen = allenp@bournemouth.ac.uk
-Patryk Sowinski = -
-Ben Russell = ben@tkob.co.uk
+Credits:
+Lead Programmer: Pete Allen
+Programmers:     Steven Reynolds 
+                 Alex Jones
+Art:             Ben Russell
 
 ---------------------------------------------------
 
